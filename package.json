@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "playwright": "*"
+  },
+  "scripts": {
+    "start": "node main.js"
+  }
+}
