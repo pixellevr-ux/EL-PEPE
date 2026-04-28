@@ -31,7 +31,7 @@ console.log('🚀 Lancement des robots permanents...');
   try {
     const browser = await chromium.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--single-process']
     });
     const context = await browser.newContext();
     await context.addInitScript(gmPolyfill);
@@ -48,7 +48,6 @@ console.log('🚀 Lancement des robots permanents...');
     console.log('Injection Satology...');
     const pageS = await context.newPage();
     await pageS.goto('https://claimfreecoins.io/', { waitUntil: 'domcontentloaded', timeout: 30000 });
-    // Pré-remplit les identifiants
     await pageS.evaluate((creds) => {
       localStorage.setItem('cf.credentials.email', creds.email);
       localStorage.setItem('cf.credentials.password', creds.password);
